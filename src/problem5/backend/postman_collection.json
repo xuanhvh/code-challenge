@@ -1,0 +1,303 @@
+{
+    "info": {
+        "name": "Problem 5 - Student CRUD API",
+        "_postman_id": "problem5-student-api",
+        "description": "ExpressJS + TypeScript + TypeORM + MySQL Student CRUD API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Create Student",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"name\": \"John Doe\",\n  \"age\": 20,\n  \"email\": \"john@example.com\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:3000/students",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "students"
+                    ]
+                },
+                "description": "Create a new student"
+            },
+            "response": []
+        },
+        {
+            "name": "Get All Students (No Filter)",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:3000/students",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "students"
+                    ]
+                },
+                "description": "Get all students (non-deleted) without any filters"
+            },
+            "response": []
+        },
+        {
+            "name": "Get Students - Filter by Name",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:3000/students?name=John",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "students"
+                    ],
+                    "query": [
+                        {
+                            "key": "name",
+                            "value": "John",
+                            "description": "Filter by name (partial match)"
+                        }
+                    ]
+                },
+                "description": "Filter students by name (partial match, case-insensitive)"
+            },
+            "response": []
+        },
+        {
+            "name": "Get Students - Filter by Age",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:3000/students?age=20",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "students"
+                    ],
+                    "query": [
+                        {
+                            "key": "age",
+                            "value": "20",
+                            "description": "Filter by age (exact match)"
+                        }
+                    ]
+                },
+                "description": "Filter students by age (exact match)"
+            },
+            "response": []
+        },
+        {
+            "name": "Get Students - Filter by Email",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:3000/students?email=gmail.com",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "students"
+                    ],
+                    "query": [
+                        {
+                            "key": "email",
+                            "value": "gmail.com",
+                            "description": "Filter by email (partial match)"
+                        }
+                    ]
+                },
+                "description": "Filter students by email (partial match)"
+            },
+            "response": []
+        },
+        {
+            "name": "Get Students - Filter by Active (Active)",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:3000/students?active=1",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "students"
+                    ],
+                    "query": [
+                        {
+                            "key": "active",
+                            "value": "1",
+                            "description": "Filter by active status (1 = active, 0 = inactive)"
+                        }
+                    ]
+                },
+                "description": "Filter active students (active = 1)"
+            },
+            "response": []
+        },
+        {
+            "name": "Get Students - Filter by Active (Inactive)",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:3000/students?active=0",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "students"
+                    ],
+                    "query": [
+                        {
+                            "key": "active",
+                            "value": "0",
+                            "description": "Filter by active status (1 = active, 0 = inactive)"
+                        }
+                    ]
+                },
+                "description": "Filter inactive students (active = 0)"
+            },
+            "response": []
+        },
+        {
+            "name": "Get Students - Multiple Filters",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:3000/students?name=John&age=20&active=1",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "students"
+                    ],
+                    "query": [
+                        {
+                            "key": "name",
+                            "value": "John",
+                            "description": "Filter by name"
+                        },
+                        {
+                            "key": "age",
+                            "value": "20",
+                            "description": "Filter by age"
+                        },
+                        {
+                            "key": "active",
+                            "value": "1",
+                            "description": "Filter by active status"
+                        }
+                    ]
+                },
+                "description": "Combine multiple filters (name, age, email, active)"
+            },
+            "response": []
+        },
+        {
+            "name": "Get Student by ID",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:3000/students/1",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "students",
+                        "1"
+                    ]
+                },
+                "description": "Get a student by ID"
+            },
+            "response": []
+        },
+        {
+            "name": "Update Student",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"name\": \"John Updated\",\n  \"age\": 21,\n  \"email\": \"john.updated@example.com\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:3000/students/1",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "students",
+                        "1"
+                    ]
+                },
+                "description": "Update a student by ID"
+            },
+            "response": []
+        },
+        {
+            "name": "Delete Student (Soft Delete)",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:3000/students/1",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "students",
+                        "1"
+                    ]
+                },
+                "description": "Soft delete a student by ID (sets deleted=true, active=false)"
+            },
+            "response": []
+        }
+    ]
+}
